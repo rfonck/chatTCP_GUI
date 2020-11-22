@@ -18,10 +18,17 @@ public class Receveur extends Thread {
 		try (BufferedReader socIn = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));) {
 			while (!clientSocket.isClosed()) {
 				String message = socIn.readLine();
+				if(message.equals("null")) {
+					break;
+				}
 				this.messageListener.nouveauMessage( message);
 			}
 		} catch (Exception e) {
 			System.err.println("Error in EchoServer:" + e);
+			
+		}
+		finally {
+			System.exit(1);
 		}
 	}
 	
