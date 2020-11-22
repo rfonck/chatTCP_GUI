@@ -7,10 +7,10 @@ import java.util.Date;
 public class Controller {
 
 	private Model model ;
-	private View view;
+	private ViewClient view;
 	
 	
-	public Controller(Model model, View view) {
+	public Controller(Model model, ViewClient view) {
 		super();
 		this.model = model;
 		this.view = view;

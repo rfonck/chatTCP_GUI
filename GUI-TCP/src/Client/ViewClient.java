@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
-public class View extends JFrame{
+public class ViewClient extends JFrame{
 
 	private Model model ;
 
@@ -32,7 +32,7 @@ public class View extends JFrame{
 
 	
 
-	public View(Model model) {
+	public ViewClient(Model model) {
 		
 		
 		this.model = model;
@@ -56,8 +56,7 @@ public class View extends JFrame{
 	    connexion.setBounds(340, 20, 135, 20);
 	    this.add(connexion);
 
-//	    zoneMessagesRecus.setBounds(25, 80, 450, 340);
-//	    this.add(zoneMessagesRecus);
+
 	    scrollPane.setBounds(25, 80, 450, 340);
 	    this.scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	    this.add(scrollPane);
