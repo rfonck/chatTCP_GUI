@@ -2,6 +2,7 @@ package Client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class Controller {
 
@@ -16,7 +17,9 @@ public class Controller {
 		
 		view.addConnexionListener(new ConnexionListener());
 		view.addEnvoiListener(new EnvoyerMessageListener());
+		view.addQuitterListener(new QuitterListener());
 		model.addMessageListener(new RecevoirMessageListener());
+		
 	}
 	
     class ConnexionListener implements ActionListener {
@@ -36,9 +39,19 @@ public class Controller {
             
             try {
             	String message = view.getUserMessage();
+            	view.setUserMessage("");
+            	view.addMessageRecu("\n Vous avez écrit: \n	" + message + "\nà: " + new Date().toString());
             	model.envoyer(message);
             } catch (NumberFormatException nfex) {
             }
+        }
+    }
+    
+    class QuitterListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            model.quitter();
+            System.exit(1);
+
         }
     }
     

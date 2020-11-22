@@ -1,6 +1,7 @@
 package Client;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
@@ -28,7 +29,15 @@ public class Receveur extends Thread {
 		this.messageListener = listener;
 	}
 
-
+	public void quitter() {
+		try {
+			this.clientSocket.close();
+		} catch (IOException e) {
+			System.out.println("erreur lors de la déconnexion R");
+			e.printStackTrace();
+		}
+		
+	}
 
 
 }

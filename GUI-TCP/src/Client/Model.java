@@ -24,6 +24,11 @@ public class Model {
 		envoyeur.envoyer(message);
 	}
 	
+	public void quitter() {
+		receveur.quitter();
+		
+	}
+	
 	public void addMessageListener(MessageListener listener) {
 		this.messageListener = listener;
 	}

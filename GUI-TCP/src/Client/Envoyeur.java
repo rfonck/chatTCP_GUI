@@ -15,9 +15,7 @@ public class Envoyeur {
 	private String port;
 	private PrintStream socOut;
 	private Socket echoSocket;
-	private BufferedReader socIn ;
-	private PrintStream socOutTemp;
-	private BufferedReader stdIn ;
+
 	
 	
 	
@@ -29,17 +27,14 @@ public class Envoyeur {
 	}
 	  
 	public Socket connecter() {
-		System.out.println("là ça va 1");
 
-		System.out.println("là ça va 2");
 		try {
 			this.echoSocket = new Socket(ip, Integer.parseInt(port));
-			this.socIn = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+
 			this.socOut = new PrintStream(echoSocket.getOutputStream());
-			this.stdIn = new BufferedReader(new InputStreamReader(System.in));
+
 			
-			System.out.println("là ça va 4");
-			System.out.println("là ça va 5");
+
 			} catch (UnknownHostException e) {
 		      System.err.println("Don't know about host:" + ip);
 		      System.exit(1);
@@ -47,20 +42,28 @@ public class Envoyeur {
 		      System.err.println("Couldn't get I/O for " + "the connection to:" + ip);
 		      System.exit(1);
 		    }
-			System.out.println("là ça va 6");
-			
-			//ct.start();
-			System.out.println("là ça va 7");
+
 			return this.echoSocket;
 	}
 	
 	public void envoyer(String ligne) {
 		
 
-        String message = "\n" + pseudo + " a écrit : \n	" + ligne + "\nà :" + new Date().toString();  
+        String message = "\n" + pseudo + " a écrit: \n	" + ligne + "\nà: " + new Date().toString();  
         
 
         socOut.println(message);
+	}
+	
+	public void quitter() {
+		socOut.close();
+		try {
+			echoSocket.close();
+		} catch (IOException e) {
+			System.out.println("erreur lors de la déconnexion E");
+			e.printStackTrace();
+		}
+		
 	}
 
 	

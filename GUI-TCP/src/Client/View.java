@@ -8,8 +8,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 public class View extends JFrame{
 
@@ -19,14 +21,15 @@ public class View extends JFrame{
 	
 	private JButton envoyer = new JButton("Envoyer");
 	private JButton connexion = new JButton("connexion");
+	private JButton quitter = new JButton("quitter");
 	
 	private JTextArea zoneMessagesRecus = new JTextArea();
+	private JScrollPane scrollPane = new JScrollPane(zoneMessagesRecus);
 	private JTextField zoneMessageEnvoye = new JTextField("Message à envoyer");
 	private JTextField pseudo = new JTextField("pseudo");
-	private JTextField ip = new JTextField("Adresse IP");
-	private JTextField port = new JTextField("Port");
-	
-	private JPanel conteneur = new JPanel();
+	private JTextField ip = new JTextField("127.0.0.1");
+	private JTextField port = new JTextField("2048");
+
 	
 
 	public View(Model model) {
@@ -39,19 +42,35 @@ public class View extends JFrame{
 	    this.setResizable(false);
 	    this.setTitle("Client chat");
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    conteneur.add(pseudo);
-	    conteneur.add(ip);
-	    conteneur.add(port);
-	    conteneur.add(connexion);
+	    this.setLayout(null);
 	    
-	    conteneur.add(zoneMessagesRecus);
+	    pseudo.setBounds(25, 20, 100, 20);
+	    this.add(pseudo);
 	    
-	    conteneur.add(zoneMessageEnvoye);
-	    conteneur.add(envoyer);
+	    ip.setBounds(150, 20, 100, 20);
+	    this.add(ip);
 	    
-	    conteneur.setLayout(new BoxLayout(conteneur, BoxLayout.PAGE_AXIS));
+	    port.setBounds(275, 20, 40, 20);
+	    this.add(port);
 	    
-	    this.setContentPane(conteneur);
+	    connexion.setBounds(340, 20, 135, 20);
+	    this.add(connexion);
+
+//	    zoneMessagesRecus.setBounds(25, 80, 450, 340);
+//	    this.add(zoneMessagesRecus);
+	    scrollPane.setBounds(25, 80, 450, 340);
+	    this.scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	    this.add(scrollPane);
+	    
+	    zoneMessageEnvoye.setBounds(25, 460, 290, 60);
+	    this.add(zoneMessageEnvoye);
+	    
+	    envoyer.setBounds(350, 460, 135, 20);
+	    this.add(envoyer);
+	    
+	    quitter.setBounds(350, 500, 135, 20);
+	    this.add(quitter);
+
 
 	}
 	
@@ -65,8 +84,16 @@ public class View extends JFrame{
     	envoyer.addActionListener(envoi);
     }
     
+    public void addQuitterListener(ActionListener quitter) {
+    	this.quitter.addActionListener(quitter);
+    }
+    
     public String getUserMessage() {
     	return zoneMessageEnvoye.getText();
+    }
+    
+    public void setUserMessage(String ligne) {
+    	zoneMessageEnvoye.setText(ligne);
     }
     
     public String getIp() {
@@ -82,8 +109,6 @@ public class View extends JFrame{
     }
     
     public void addMessageRecu(String nouveauMessage) {
-    	String anciensMessages = zoneMessagesRecus.getText();
-    	zoneMessagesRecus.setText(anciensMessages.concat(nouveauMessage));
-    	
+    	zoneMessagesRecus.append(nouveauMessage + "\n");
     }
 }
