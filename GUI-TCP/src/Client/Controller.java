@@ -3,7 +3,11 @@ package Client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
-
+/**
+ * Controleur de l'application 
+ * @author romain
+ *
+ */
 public class Controller {
 
 	private Model model ;
@@ -21,7 +25,11 @@ public class Controller {
 		model.addMessageListener(new RecevoirMessageListener());
 		
 	}
-	
+	/**
+	 * Listener dédié à l'ihm (connexion)
+	 * @author romain
+	 *
+	 */
     class ConnexionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
@@ -34,6 +42,11 @@ public class Controller {
             }
         }
     }
+    /**
+     * Listener dédié à l'ihm (Envoyer)
+     * @author romain
+     *
+     */
     class EnvoyerMessageListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             
@@ -46,7 +59,11 @@ public class Controller {
             }
         }
     }
-    
+    /**
+     * Listener dédié à l'ihm (quitter)
+     * @author romain
+     *
+     */
     class QuitterListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             model.quitter();
@@ -54,7 +71,11 @@ public class Controller {
 
         }
     }
-    
+	/** 
+	 * Listener dédié au modele (message reçu)
+	 * @author romain
+	 *
+	 */
     class RecevoirMessageListener implements MessageListener {
     	public void nouveauMessage(String message) {
     		view.addMessageRecu(message);

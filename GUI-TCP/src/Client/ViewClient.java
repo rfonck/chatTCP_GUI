@@ -13,6 +13,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+
+/**
+ * IHM de l'application
+ * @author romain
+ *
+ */
 public class ViewClient extends JFrame{
 
 	private Model model ;

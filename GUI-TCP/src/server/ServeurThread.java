@@ -18,7 +18,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-
+/**
+ * Cette classe implémente un thread dédié à la communication avec un client
+ * @author romain
+ *
+ */
 public class ServeurThread extends Thread {
 	private List<Socket> listeclient;
 	private Socket clientSocket;
@@ -28,7 +32,9 @@ public class ServeurThread extends Thread {
 		this.clientSocket = s;
 	}
 
-
+	/**
+	 * A l'arrivée d'un message, on l'envoie à tout les autres clients grâce à une liste synchronisée 
+	 */
 	public void run() {
     	  try {
               synchronized (listeclient) {

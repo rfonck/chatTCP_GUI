@@ -20,7 +20,11 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import Client.ViewClient;
-
+/**
+ * Classe principale du serveur 
+ * @author romain
+ *
+ */
 public class EchoServerMultiThreaded  {
   
 	private ViewServer view ;
@@ -52,7 +56,9 @@ public class EchoServerMultiThreaded  {
 			System.err.println("Error in EchoServer:" + e);
 		}
     }
-       
+       /**
+        * Méthode utilisée pour arrêter le serveur (qui femr etout les sockets)
+        */
     public void stop(){ 
         for(ServeurThread thread : this.listeServeurThread) {
         	thread.stop();

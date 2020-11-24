@@ -6,7 +6,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * Classe implémentant un thread (qui gère les nouvelles connexions)
+ * @author romain
+ *
+ */
 public class ThreadGenerator  extends Thread {
 
 	private ServerSocket listenSocket;

@@ -3,7 +3,11 @@ package Client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.Socket;
-
+/**
+ * Classe qui regroupe un envoyeur et un receveur.
+ * @author romain
+ *
+ */
 public class Model {
 
 	private Receveur receveur;

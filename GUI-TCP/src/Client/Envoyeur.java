@@ -8,6 +8,11 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Date;
 
+/**
+ * Classe qui gère l'envoie d'un message
+ * @author romain
+ *
+ */
 public class Envoyeur {
 
 	private String pseudo ;
@@ -25,15 +30,16 @@ public class Envoyeur {
 		this.ip = ip;
 		this.port = port;
 	}
-	  
+	  /**
+	   * Méthode qui permet de se connecter au serveur et qui crée une socket.
+	   * @return
+	   */
 	public Socket connecter() {
 
 		try {
 			this.echoSocket = new Socket(ip, Integer.parseInt(port));
 
 			this.socOut = new PrintStream(echoSocket.getOutputStream());
-
-			
 
 			} catch (UnknownHostException e) {
 		      System.err.println("Don't know about host:" + ip);
@@ -45,7 +51,10 @@ public class Envoyeur {
 
 			return this.echoSocket;
 	}
-	
+	/**
+	 * Méthode permettant l'envoie du message passé en commentaire au serveur.
+	 * @param ligne
+	 */
 	public void envoyer(String ligne) {
 		
 
@@ -54,7 +63,9 @@ public class Envoyeur {
 
         socOut.println(message);
 	}
-	
+	/**
+	 * Méthode qui clot le socket à la déconnexion.
+	 */
 	public void quitter() {
 		socOut.close();
 		try {
